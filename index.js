@@ -42,6 +42,11 @@ module.exports = function(el, choices, options) {
     select: function (n) {
       this.selection = Math.max(0, Math.min(this.filtered.length, n))
       this.update()
+      var element = this.el.querySelector('li.selected')
+      if (element && element.scrollIntoViewIfNeeded) {
+        // follow element if it goes outside of view
+        element.scrollIntoViewIfNeeded()
+      }
     },
     next: function () {
       this.select(this.selection + 1)
